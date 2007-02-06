@@ -1,0 +1,99 @@
+Installation and Configuration:
+=======================
+
+      i) Create database tables in your Mysql database.
+      ii) Create a database configuration file (db.php) with  the details of the database access.
+      iii) Create an Administrator account for the Dictionary application.
+
+How to proceed?
+------------------------
+     i) Extract the compressed file to a directory in your web server. (Eg: /var/www/html/ )
+
+               $> tar -xvzf swecha.tgz -C /var/www/html/
+              You may have to be a super user to do this.
+  
+     ii) Move into the swecha directory.
+    
+                $> cd /var/www/html/swecha/
+
+     
+    iii) Execute the file "eng2te.sql" in your Mysql database.
+
+    If you have command line access to your Mysql server machine then you can do the following. Say the name of your database is 'dict', now you will have to execute the following command at command prompt.
+
+                $> mysql -u root -p
+                           
+                            or
+
+                $> mysql -u user -h mydomain.com -p
+            
+          then it asks for the password where root/user = Database user;
+                                                             mydomain.com  = Sample host name;
+
+                This is to access the Mysql database. Once you are done with this, you are provided with the mysql command prompt. Here use the following command to create your own database .
+
+              mysql> CREATE DATABASE <database name>;
+           
+              Eg: If your database name is say "dict" , then 
+                  
+                     mysql> CREATE DATABASE dict;
+      
+           Now execute the file eng2te.sql using the following command:
+      
+                  mysql> ./eng2te.sql <file path>;
+ 
+               where <file path> is the path of the file .
+        
+          You can access your mysql database and check if the tables are properly created.          
+
+  
+    iv) Edit the file db.php and set the values for the variables "username","password"and the "database " and save it. Here "username" and "password" are given to access the database and the name of the database you are using to create the database tables is given to the "database" variable.   
+
+               Now  'db.php' file has the details of the database to allow Dictionary application to access it.  
+
+               A sample content of 'db.php' is listed below :
+         
+                 ---------------'db.php'----------------------------
+                 <?php
+
+                  // MySql Server Name or IP
+                  $host		= "mydomain.com";
+                  
+                  // Database Username
+                  $username		= "root";
+                  
+                  // Password for the Database User
+                  $password		= "myPassWord123";
+    
+                  // Database Name
+                  $database		= "dict";
+
+                   ?>
+                  ------------------------------------------------------
+ 
+     v) Before you start using the application you have to create a Dictionary user with 'Administrative' privileges in your Dictionary application.  To do this,  execute the following command at the mysql command prompt.
+       
+                mysql>  insert into login values("username", MD5("password")); 
+         
+              The tasks of the Administrator is listed in the next section below.
+
+NOTE: Only ADMINISTRATIVE USERS for Dictionary application should be created like this.
+
+You are now all set to use the Dictionary application. You can access it from your web browser.
+
+
+Usage and Administration:
+=====================
+          The Administrator is primarily responsible for:
+        	
+     - Reviewing the suggestions given by the users for the corresponding english word.
+
+     - He can permanently add the suggestion into the database as well remove the suggestion from the database by accessing the Reviewer's page.
+    
+    
+User Roles:
+ ---------------
+        
+          - He can search meaning for an english word.
+          
+          - He can suggest  a meaning for a new english word or a new meaning to an existing word or he can also suggest a spelling correction for an existing word.

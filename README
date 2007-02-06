@@ -1,0 +1,14 @@
+Description:
+------------
+The code included in this package helps in easy searching of words for its telugu meaning.
+
+
+Requirements:
+-------------
+PHP5
+
+Suggestions:
+------------
+The users should have unicode font for Telugu i.e., Pothana 2000 and Indic enabled 
+browser to view the Indian Language Characters properly.
+
